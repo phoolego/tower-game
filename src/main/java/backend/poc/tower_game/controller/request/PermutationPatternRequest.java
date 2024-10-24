@@ -13,4 +13,7 @@ public class PermutationPatternRequest {
 
     @JsonProperty("r")
     private Integer r;
+
+    @JsonProperty("max_run")
+    private Integer maxRun;
 }

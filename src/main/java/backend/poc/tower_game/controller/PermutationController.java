@@ -25,7 +25,17 @@ public class PermutationController {
 
     @PostMapping("/permutation/pattern")
     public ResponseEntity<GeneralResponse<Integer[][]>> calculateBestPathBasic(@Valid @RequestBody PermutationPatternRequest request) {
-        Integer[][] result = permutationService.getPermutationPattern(request.getN(), request.getR());
-        return responseFactory.success(result);
+        try{
+            log.info("=== Start generate permutation pattern ===");
+            Integer[][] result;
+            if (request.getMaxRun() == null){
+                result = permutationService.getPermutationPattern(request.getN(), request.getR());
+            } else {
+                result = permutationService.getPermutationPattern(request.getN(), request.getR(), request.getMaxRun());
+            }
+            return responseFactory.success(result);
+        } finally {
+            log.info("=== End generate permutation pattern ===");
+        }
     }
 }
