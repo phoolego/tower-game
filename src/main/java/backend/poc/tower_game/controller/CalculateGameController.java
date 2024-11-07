@@ -6,6 +6,7 @@ import backend.poc.tower_game.controller.response.CalculateBestPathResponse;
 import backend.poc.tower_game.controller.response.ExecuteSequence;
 import backend.poc.tower_game.controller.response.GeneralResponse;
 import backend.poc.tower_game.factory.ResponseFactory;
+import backend.poc.tower_game.service.CalculateGameService;
 import backend.poc.tower_game.util.StringFormatUtil;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
@@ -27,20 +28,15 @@ public class CalculateGameController {
     @Autowired
     private ResponseFactory responseFactory;
 
+    @Autowired
+    private CalculateGameService calculateGameService;
+
     @PostMapping("/calculate-best-path/basic")
     public ResponseEntity<GeneralResponse<CalculateBestPathResponse>> calculateBestPathBasic(@Valid @RequestBody CalculateBestPathRequest request) {
         try {
             log.info("=== Start process calculate best path for tower ===");
             this.logRequestDetail(request);
-
-            for (int i = 0; i < request.getTowers().size(); i++) {
-                List<TowerFloor> tower = request.getTowers().get(i);
-                log.info("process tower[{}]", i);
-                TowerFloor[][] towerFloors = setUpTowerFloorPermutation(tower);
-
-            }
-
-            CalculateBestPathResponse response = new CalculateBestPathResponse();
+            CalculateBestPathResponse response = calculateGameService.calculateBestPathBasic(request);
             return responseFactory.success(response);
         } finally {
             log.info("=== End process calculate best path for tower ===");

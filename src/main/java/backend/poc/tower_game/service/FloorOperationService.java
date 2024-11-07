@@ -36,7 +36,7 @@ public class FloorOperationService {
             case "!" -> battle(heroPower, towerFloor.getPower());
             default -> -1;
         };
-        log.info("execute floor power result [{}]", resultPower);
+        log.info("execute floor power result of power[{}] on floor setting operation[{}] power[{}], is [{}]", heroPower, towerFloor.getOperation(), towerFloor.getPower(), resultPower);
         return resultPower;
     }
 }

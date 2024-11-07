@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Slf4j
 @Service
@@ -103,7 +105,4 @@ public class PermutationService {
         return permutationPattern;
     }
 
-    private boolean isLastTwoPosition(int c, int r) {
-        return c > 1 && (c == r - 1 || c == r - 2);
-    }
 }
