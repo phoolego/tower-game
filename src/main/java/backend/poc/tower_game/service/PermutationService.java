@@ -62,7 +62,7 @@ public class PermutationService {
         Integer[][] permutationPattern = new Integer[Math.min(permutation, maxRun)][r];
 
         for (int choose = 0; choose < r; choose++) {
-            // formula for finding repeating count in each deep of permutation patter permutation * (factorial(n - choose - 1) / factorial(n))
+            // formula for finding repeating count in each deep of permutation patter[ permutation * (factorial(n - choose - 1) / factorial(n)) ]
             int groupRange = permutation / factorialWithLowerBound(n, n - choose - 1);
             int previousGroupRange = 0;
             if (choose != 0) {
